@@ -1,15 +1,1027 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/club/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>湖北盐业荆州分公司 · 市场营销中心 | 库存商品进销存智能管理看板系统</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>湖北盐业荆州分公司 · 库存商品进销存智能管理看板系统</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f9fafb; color: #1f2937; }
+    .bg-gray-50 { background-color: #f9fafb; }
+    .bg-white { background-color: #ffffff; }
+    .border-gray-200 { border-color: #e5e7eb; }
+    .border-gray-100 { border-color: #f3f4f6; }
+    .text-gray-800 { color: #1f2937; }
+    .text-gray-600 { color: #4b5563; }
+    .text-gray-500 { color: #6b7280; }
+    .text-blue-600 { color: #2563eb; }
+    .text-green-600 { color: #16a34a; }
+    .text-red-600 { color: #dc2626; }
+    .text-orange-600 { color: #ea580c; }
+    .text-yellow-600 { color: #ca8a04; }
+    .text-purple-600 { color: #9333ea; }
+    .bg-blue-50 { background-color: #eff6ff; }
+    .bg-green-50 { background-color: #f0fdf4; }
+    .bg-orange-50 { background-color: #fff7ed; }
+    .bg-purple-50 { background-color: #faf5ff; }
+    .bg-red-50 { background-color: #fef2f2; }
+    .bg-blue-500 { background-color: #3b82f6; }
+    .bg-green-500 { background-color: #10b981; }
+    .bg-orange-500 { background-color: #f97316; }
+    .bg-purple-500 { background-color: #8b5cf6; }
+    .bg-red-500 { background-color: #ef4444; }
+    .bg-gradient-to-br { background: linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to)); }
+    .from-blue-600 { --tw-gradient-from: #2563eb; }
+    .to-cyan-500 { --tw-gradient-to: #06b6d4; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .rounded-full { border-radius: 9999px; }
+    .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+    .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .m-2 { margin: 0.5rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .text-lg { font-size: 1.125rem; }
+    .text-xl { font-size: 1.25rem; }
+    .text-2xl { font-size: 1.5rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .font-medium { font-weight: 500; }
+    .flex { display: flex; }
+    .inline-flex { display: inline-flex; }
+    .grid { display: grid; }
+    .block { display: block; }
+    .hidden { display: none; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+    .self-center { align-self: center; }
+    .flex-1 { flex: 1; }
+    .w-full { width: 100%; }
+    .w-10 { width: 2.5rem; }
+    .w-14 { width: 3.5rem; }
+    .w-8 { width: 2rem; }
+    .h-screen { height: 100vh; }
+    .h-full { height: 100%; }
+    .h-10 { height: 2.5rem; }
+    .h-14 { height: 3.5rem; }
+    .h-8 { height: 2rem; }
+    .overflow-hidden { overflow: hidden; }
+    .overflow-auto { overflow: auto; }
+    .overflow-x-auto { overflow-x: auto; }
+    .border { border-width: 1px; }
+    .border-b { border-bottom-width: 1px; }
+    .border-r { border-right-width: 1px; }
+    .border-2 { border-width: 2px; }
+    .border-dashed { border-style: dashed; }
+    .divide-y { border-top-width: 1px; }
+    .divide-gray-100 { --tw-divide-y-reverse: 0; border-bottom-width: calc(1px * calc(1 - var(--tw-divide-y-reverse))); border-top-width: calc(1px * var(--tw-divide-y-reverse)); border-color: #f3f4f6; }
+    .table { display: table; }
+    .thead { display: table-header-group; }
+    .tbody { display: table-row-group; }
+    .tr { display: table-row; }
+    .th { display: table-cell; font-weight: 600; }
+    .td { display: table-cell; }
+    .sticky { position: sticky; }
+    .top-0 { top: 0; }
+    .fixed { position: fixed; }
+    .z-10 { z-index: 10; }
+    .z-50 { z-index: 50; }
+    .transition-colors { transition-property: background-color, border-color, color, fill, stroke; }
+    .transition-all { transition-property: all; }
+    .duration-300 { transition-duration: 300ms; }
+    .hover\:bg-gray-50:hover { background-color: #f9fafb; }
+    .hover\:bg-blue-700:hover { background-color: #1d4ed8; }
+    .hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+    .hover\:border-blue-500:hover { border-color: #3b82f6; }
+    .active\:bg-blue-600:active { background-color: #2563eb; }
+    .cursor-pointer { cursor: pointer; }
+    .cursor-default { cursor: default; }
+    .opacity-0 { opacity: 0; }
+    .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.75rem; }
+    .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+    @media (min-width: 640px) {
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .lg\:ml-64 { margin-left: 16rem; }
+      .lg\:w-64 { width: 16rem; }
+      .lg\:hidden { display: none; }
+    }
+    @media (max-width: 1023px) {
+      .lg\:w-64 { width: 0; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div id="root"></div>
+  <script>
+    const initialInventory = [
+      { id: '1', materialCode: 'YL001', materialName: '精制食用盐(加碘)', spec: '500g/袋', warehouse: '荆州仓库', quantity: 12500, unit: '袋', warningLevel: 'low' },
+      { id: '2', materialCode: 'YL002', materialName: '低钠盐', spec: '400g/袋', warehouse: '宜昌仓库', quantity: 8200, unit: '袋', warningLevel: null },
+      { id: '3', materialCode: 'YL003', materialName: '海藻碘盐', spec: '350g/袋', warehouse: '荆州仓库', quantity: 3500, unit: '袋', warningLevel: 'high' },
+      { id: '4', materialCode: 'YL004', materialName: '深井盐', spec: '1kg/袋', warehouse: '襄阳仓库', quantity: 6800, unit: '袋', warningLevel: null },
+      { id: '5', materialCode: 'YL005', materialName: '竹盐', spec: '250g/罐', warehouse: '荆州仓库', quantity: 2100, unit: '罐', warningLevel: 'high' },
+      { id: '6', materialCode: 'YL006', materialName: '雪花盐', spec: '300g/袋', warehouse: '宜昌仓库', quantity: 4500, unit: '袋', warningLevel: 'medium' },
+      { id: '7', materialCode: 'YL007', materialName: '腌制盐', spec: '5kg/袋', warehouse: '襄阳仓库', quantity: 1500, unit: '袋', warningLevel: 'high' },
+      { id: '8', materialCode: 'YL008', materialName: '工业盐', spec: '25kg/袋', warehouse: '荆州仓库', quantity: 28000, unit: '袋', warningLevel: null },
+      { id: '9', materialCode: 'YL009', materialName: '饲料盐', spec: '50kg/袋', warehouse: '宜昌仓库', quantity: 18000, unit: '袋', warningLevel: null },
+      { id: '10', materialCode: 'YL010', materialName: '畜牧盐', spec: '40kg/袋', warehouse: '襄阳仓库', quantity: 12000, unit: '袋', warningLevel: 'low' },
+    ];
+    const initialSales = [
+      { id: '1', category: '食用盐', productName: '精制食用盐(加碘)', spec: '500g/袋', quantity: 32000, revenue: 96000, unitPrice: 3.00, date: '2026-06' },
+      { id: '2', category: '食用盐', productName: '低钠盐', spec: '400g/袋', quantity: 15000, revenue: 52500, unitPrice: 3.50, date: '2026-06' },
+      { id: '3', category: '食用盐', productName: '海藻碘盐', spec: '350g/袋', quantity: 8000, revenue: 36000, unitPrice: 4.50, date: '2026-06' },
+      { id: '4', category: '工业盐', productName: '工业盐', spec: '25kg/袋', quantity: 5000, revenue: 40000, unitPrice: 8.00, date: '2026-06' },
+      { id: '5', category: '畜牧盐', productName: '饲料盐', spec: '50kg/袋', quantity: 3000, revenue: 24000, unitPrice: 8.00, date: '2026-06' },
+      { id: '6', category: '食用盐', productName: '深井盐', spec: '1kg/袋', quantity: 12000, revenue: 42000, unitPrice: 3.50, date: '2026-06' },
+      { id: '7', category: '食用盐', productName: '竹盐', spec: '250g/罐', quantity: 4000, revenue: 32000, unitPrice: 8.00, date: '2026-06' },
+      { id: '8', category: '食用盐', productName: '雪花盐', spec: '300g/袋', quantity: 9000, revenue: 40500, unitPrice: 4.50, date: '2026-06' },
+      { id: '9', category: '腌制盐', productName: '腌制盐', spec: '5kg/袋', quantity: 2000, revenue: 18000, unitPrice: 9.00, date: '2026-06' },
+      { id: '10', category: '畜牧盐', productName: '畜牧盐', spec: '40kg/袋', quantity: 2500, revenue: 20000, unitPrice: 8.00, date: '2026-06' },
+    ];
+    const initialPurchase = [
+      { id: '1', category: '食用盐', productName: '精制食用盐(加碘)', spec: '500g/袋', quantity: 40000, amount: 100000, supplier: '湖北盐业集团', date: '2026-06' },
+      { id: '2', category: '食用盐', productName: '低钠盐', spec: '400g/袋', quantity: 20000, amount: 60000, supplier: '湖北盐业集团', date: '2026-06' },
+      { id: '3', category: '工业盐', productName: '工业盐', spec: '25kg/袋', quantity: 8000, amount: 56000, supplier: '湖南盐业', date: '2026-06' },
+      { id: '4', category: '畜牧盐', productName: '饲料盐', spec: '50kg/袋', quantity: 5000, amount: 35000, supplier: '江西盐业', date: '2026-06' },
+      { id: '5', category: '食用盐', productName: '深井盐', spec: '1kg/袋', quantity: 15000, amount: 42000, supplier: '湖北盐业集团', date: '2026-06' },
+    ];
+    const monthlyStats = [
+      { month: '1月', sales: 280000, purchase: 320000, inventory: 156000 },
+      { month: '2月', sales: 310000, purchase: 280000, inventory: 126000 },
+      { month: '3月', sales: 340000, purchase: 350000, inventory: 136000 },
+      { month: '4月', sales: 380000, purchase: 400000, inventory: 156000 },
+      { month: '5月', sales: 420000, purchase: 380000, inventory: 116000 },
+      { month: '6月', sales: 400000, purchase: 420000, inventory: 136000 },
+    ];
+
+    class Store {
+      constructor() {
+        this.inventory = JSON.parse(localStorage.getItem('inventory') || JSON.stringify(initialInventory));
+        this.sales = JSON.parse(localStorage.getItem('sales') || JSON.stringify(initialSales));
+        this.purchase = JSON.parse(localStorage.getItem('purchase') || JSON.stringify(initialPurchase));
+        this.listeners = [];
+      }
+      subscribe(listener) {
+        this.listeners.push(listener);
+        return () => this.listeners = this.listeners.filter(l => l !== listener);
+      }
+      setInventory(data) {
+        this.inventory = data;
+        localStorage.setItem('inventory', JSON.stringify(data));
+        this.notify();
+      }
+      setSales(data) {
+        this.sales = data;
+        localStorage.setItem('sales', JSON.stringify(data));
+        this.notify();
+      }
+      setPurchase(data) {
+        this.purchase = data;
+        localStorage.setItem('purchase', JSON.stringify(data));
+        this.notify();
+      }
+      notify() {
+        this.listeners.forEach(l => l());
+      }
+      get dashboardStats() {
+        return {
+          totalSales: this.sales.reduce((sum, s) => sum + s.revenue, 0),
+          totalPurchase: this.purchase.reduce((sum, p) => sum + p.amount, 0),
+          totalInventory: this.inventory.reduce((sum, i) => sum + i.quantity, 0),
+          totalWarnings: this.inventory.filter(i => i.warningLevel).length,
+          salesGrowth: 12.5,
+          purchaseGrowth: 8.3,
+          inventoryGrowth: -3.2,
+        };
+      }
+      get categorySales() {
+        return this.sales.reduce((acc, s) => {
+          const existing = acc.find(a => a.category === s.category);
+          if (existing) { existing.revenue += s.revenue; existing.quantity += s.quantity; }
+          else { acc.push({ category: s.category, revenue: s.revenue, quantity: s.quantity }); }
+          return acc;
+        }, []);
+      }
+      get warehouseDistribution() {
+        return this.inventory.reduce((acc, i) => {
+          const existing = acc.find(a => a.warehouse === i.warehouse);
+          if (existing) { existing.quantity += i.quantity; }
+          else { acc.push({ warehouse: i.warehouse, quantity: i.quantity }); }
+          return acc;
+        }, []).map(w => ({ ...w, percentage: ((w.quantity / this.inventory.reduce((sum, i) => sum + i.quantity, 0)) * 100).toFixed(1) }));
+      }
+      get warnings() {
+        const levelOrder = { high: 0, medium: 1, low: 2 };
+        return this.inventory.filter(i => i.warningLevel).sort((a, b) => levelOrder[a.warningLevel] - levelOrder[b.warningLevel]);
+      }
+    }
+    const store = new Store();
+
+    function h(type, props = {}, ...children) {
+      return { type, props: props || {}, children: children.flat() };
+    }
+
+    function render(vnode, container) {
+      if (typeof vnode === 'string' || typeof vnode === 'number') {
+        container.appendChild(document.createTextNode(vnode));
+        return;
+      }
+      if (!vnode) return;
+      const element = typeof vnode.type === 'function' 
+        ? renderComponent(vnode.type, vnode.props, vnode.children)
+        : document.createElement(vnode.type);
+      if (vnode.props) {
+        for (const [key, value] of Object.entries(vnode.props)) {
+          if (key === 'className') element.className = value;
+          else if (key === 'style') Object.assign(element.style, value);
+          else if (key.startsWith('on') && typeof value === 'function') {
+            element.addEventListener(key.toLowerCase().slice(2), value);
+          } else if (key === 'checked' || key === 'disabled' || key === 'selected') {
+            element[key] = value;
+          } else {
+            element.setAttribute(key, value);
+          }
+        }
+      }
+      vnode.children.forEach(child => render(child, element));
+      container.appendChild(element);
+    }
+
+    function renderComponent(Component, props, children) {
+      const instance = new Component();
+      const state = {};
+      const setState = (newState) => {
+        Object.assign(state, newState);
+        instance.forceUpdate();
+      };
+      instance.props = props;
+      instance.children = children;
+      instance.state = state;
+      instance.setState = setState;
+      instance.forceUpdate = () => {
+        const container = document.createElement('div');
+        const vnode = instance.render();
+        render(vnode, container);
+        return container.firstChild;
+      };
+      return instance.forceUpdate();
+    }
+
+    class Router {
+      constructor(routes) {
+        this.routes = routes;
+        this.currentPath = window.location.pathname.replace('/club', '') || '/';
+        this.listeners = [];
+        window.addEventListener('popstate', () => {
+          this.currentPath = window.location.pathname.replace('/club', '') || '/';
+          this.notify();
+        });
+      }
+      navigate(path) {
+        this.currentPath = path;
+        window.history.pushState({}, '', `/club${path}`);
+        this.notify();
+      }
+      subscribe(listener) {
+        this.listeners.push(listener);
+        return () => this.listeners = this.listeners.filter(l => l !== listener);
+      }
+      notify() {
+        this.listeners.forEach(l => l(this.currentPath));
+      }
+      getCurrentRoute() {
+        return this.routes.find(r => r.path === this.currentPath);
+      }
+    }
+
+    const router = new Router([
+      { path: '/', component: Dashboard },
+      { path: '/sales', component: SalesPage },
+      { path: '/purchase', component: PurchasePage },
+      { path: '/inventory', component: InventoryPage },
+      { path: '/analytics', component: AnalyticsPage },
+      { path: '/upload', component: UploadPage },
+    ]);
+
+    function createIcon(name) {
+      const icons = {
+        TrendingUp: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>',
+        ShoppingCart: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>',
+        Package: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>',
+        AlertTriangle: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>',
+        BarChart3: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>',
+        Upload: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>',
+        Menu: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>',
+        X: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>',
+        PieChart: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21h5v-5"></path></svg>',
+        Users: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+        TrendingDown: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"></polyline><polyline points="16 17 22 17 22 11"></polyline></svg>',
+        CheckCircle: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+        AlertCircle: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>',
+      };
+      return icons[name] || icons.BarChart3;
+    }
+
+    function Icon({ name, className }) {
+      return h('span', { className, dangerouslySetInnerHTML: createIcon(name) });
+    }
+
+    function KPICard({ title, value, growth, icon, color, prefix = '' }) {
+      const colorClasses = {
+        blue: 'bg-blue-500',
+        green: 'bg-green-500',
+        orange: 'bg-orange-500',
+        purple: 'bg-purple-500',
+        red: 'bg-red-500',
+      };
+      return h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-all' },
+        h('div', { className: 'flex items-center justify-between' },
+          h('div', null,
+            h('p', { className: 'text-gray-500 text-sm font-medium' }, title),
+            h('p', { className: 'text-2xl font-bold text-gray-800 mt-2' }, prefix + (typeof value === 'number' ? value.toLocaleString() : value)),
+            growth !== undefined && h('p', { className: 'text-sm mt-1 flex items-center gap-1 ' + (growth >= 0 ? 'text-green-600' : 'text-red-600') },
+              h('span', { className: 'w-4 h-4 inline-block', dangerouslySetInnerHTML: createIcon(growth >= 0 ? 'TrendingUp' : 'TrendingDown') }),
+              Math.abs(growth) + '%'
+            )
+          ),
+          h('div', { className: `w-14 h-14 ${colorClasses[color]} rounded-xl flex items-center justify-center text-white` },
+            h('span', { className: 'w-6 h-6', dangerouslySetInnerHTML: createIcon(icon) })
+          )
+        )
+      );
+    }
+
+    function SimpleLineChart({ data, title }) {
+      return h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100' },
+        h('h3', { className: 'text-lg font-semibold text-gray-800 mb-4' }, title),
+        h('canvas', { id: `line-${title}` })
+      );
+    }
+
+    function SimplePieChart({ data, title }) {
+      return h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100' },
+        h('h3', { className: 'text-lg font-semibold text-gray-800 mb-4' }, title),
+        h('canvas', { id: `pie-${title}` })
+      );
+    }
+
+    function SimpleBarChart({ data, title }) {
+      return h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100' },
+        h('h3', { className: 'text-lg font-semibold text-gray-800 mb-4' }, title),
+        h('canvas', { id: `bar-${title}` })
+      );
+    }
+
+    function DataTable({ columns, data, title }) {
+      return h('div', { className: 'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden' },
+        title && h('div', { className: 'p-4 border-b border-gray-100' },
+          h('h3', { className: 'text-lg font-semibold text-gray-800' }, title)
+        ),
+        h('div', { className: 'overflow-x-auto' },
+          h('table', { className: 'w-full' },
+            h('thead', { className: 'bg-gray-50' },
+              h('tr', null, columns.map(col => h('th', { className: 'px-4 py-3 text-left text-xs font-semibold text-gray-500' }, col.label)))
+            ),
+            h('tbody', { className: 'divide-y divide-gray-100' },
+              data.map((row, idx) => h('tr', { className: 'hover:bg-gray-50', key: row.id || idx },
+                columns.map(col => h('td', { className: 'px-4 py-3 text-sm text-gray-700' },
+                  col.format ? col.format(row[col.key]) : row[col.key]
+                ))
+              ))
+            )
+          )
+        )
+      );
+    }
+
+    class Layout {
+      constructor() {
+        this.state = { sidebarOpen: true, currentPath: router.currentPath };
+        this.unsubscribe = router.subscribe(path => {
+          this.setState({ currentPath: path });
+        });
+      }
+      componentWillUnmount() {
+        this.unsubscribe();
+      }
+      render() {
+        const { sidebarOpen, currentPath } = this.state;
+        const navItems = [
+          { path: '/', label: '看板总览', icon: 'BarChart3' },
+          { path: '/sales', label: '销售管理', icon: 'TrendingUp' },
+          { path: '/purchase', label: '购进管理', icon: 'ShoppingCart' },
+          { path: '/inventory', label: '库存管理', icon: 'Package' },
+          { path: '/analytics', label: '数据分析', icon: 'PieChart' },
+          { path: '/upload', label: '数据上传', icon: 'Upload' },
+        ];
+        return h('div', { className: 'flex h-screen bg-gray-50' },
+          h('aside', { className: `${sidebarOpen ? 'w-64' : 'w-0'} fixed lg:w-64 bg-white border-r border-gray-200 h-full transition-all duration-300 overflow-hidden z-10` },
+            h('div', { className: 'p-6 border-b border-gray-100' },
+              h('div', { className: 'flex items-center gap-3' },
+                h('div', { className: 'w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center' },
+                  h('span', { className: 'text-white font-bold text-xl' }, '盐')
+                ),
+                h('div', null,
+                  h('h1', { className: 'text-lg font-bold text-gray-800' }, '湖北盐业'),
+                  h('p', { className: 'text-xs text-gray-500' }, '进销存智能看板')
+                )
+              )
+            ),
+            h('nav', { className: 'p-4' },
+              navItems.map(item => h('button', {
+                key: item.path,
+                onClick: () => router.navigate(item.path),
+                className: `flex items-center gap-3 px-4 py-3 rounded-lg mb-2 transition-colors w-full text-left ${
+                  currentPath === item.path
+                    ? 'bg-blue-50 text-blue-600 font-medium'
+                    : 'text-gray-600 hover:bg-gray-50'
+                }`
+              },
+                h('span', { className: 'w-5 h-5', dangerouslySetInnerHTML: createIcon(item.icon) }),
+                h('span', null, item.label)
+              ))
+            )
+          ),
+          h('div', { className: `flex-1 ${sidebarOpen ? 'lg:ml-64' : 'lg:ml-0'}` },
+            h('header', { className: 'bg-white border-b border-gray-200 p-4 flex items-center justify-between sticky top-0 z-50' },
+              h('button', {
+                onClick: () => this.setState({ sidebarOpen: !sidebarOpen }),
+                className: 'lg:hidden p-2 hover:bg-gray-100 rounded-lg'
+              },
+                h('span', { className: 'w-5 h-5', dangerouslySetInnerHTML: createIcon(sidebarOpen ? 'X' : 'Menu') })
+              ),
+              h('div', { className: 'flex items-center gap-4' },
+                h('h2', { className: 'text-xl font-bold text-gray-800' }, this.props.title),
+                h('div', { className: 'flex items-center gap-2 ml-auto' },
+                  h('span', { className: 'text-sm text-gray-500' }, '李付强'),
+                  h('div', { className: 'w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center' },
+                    h('span', { className: 'w-4 h-4 text-blue-600', dangerouslySetInnerHTML: createIcon('Users') })
+                  )
+                )
+              )
+            ),
+            h('main', { className: 'p-6 overflow-auto h-[calc(100vh-80px)]' },
+              this.props.children
+            )
+          )
+        );
+      }
+    }
+
+    class Dashboard {
+      constructor() {
+        this.state = {};
+        this.unsubscribe = store.subscribe(() => this.forceUpdate());
+      }
+      componentWillUnmount() {
+        this.unsubscribe();
+      }
+      render() {
+        const { dashboardStats, monthlyStats, categorySales, sales, warnings } = store;
+        setTimeout(() => {
+          renderLineChart('月度趋势分析', monthlyStats);
+          renderPieChart('分类销售占比', categorySales);
+          renderBarChart('TOP10销售排行', sales.sort((a, b) => b.revenue - a.revenue));
+        }, 100);
+        return h(Layout, { title: '看板总览' },
+          h('div', { className: 'space-y-6' },
+            h('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6' },
+              h(KPICard, { title: '销售总额', value: dashboardStats.totalSales, growth: dashboardStats.salesGrowth, icon: 'TrendingUp', color: 'blue', prefix: '¥' }),
+              h(KPICard, { title: '购进总额', value: dashboardStats.totalPurchase, growth: dashboardStats.purchaseGrowth, icon: 'ShoppingCart', color: 'green', prefix: '¥' }),
+              h(KPICard, { title: '库存总量', value: dashboardStats.totalInventory, growth: dashboardStats.inventoryGrowth, icon: 'Package', color: 'orange' }),
+              h(KPICard, { title: '预警数量', value: dashboardStats.totalWarnings, icon: 'AlertTriangle', color: 'red' })
+            ),
+            h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
+              h(SimpleLineChart, { data: monthlyStats, title: '月度趋势分析' }),
+              h(SimplePieChart, { data: categorySales, title: '分类销售占比' })
+            ),
+            h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
+              h(SimpleBarChart, { data: sales.sort((a, b) => b.revenue - a.revenue), title: 'TOP10销售排行' }),
+              h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100' },
+                h('h3', { className: 'text-lg font-semibold text-gray-800 mb-4' }, '库存预警列表'),
+                warnings.length === 0 ? h('p', { className: 'text-gray-500 text-center py-8' }, '暂无预警信息') :
+                h('div', { className: 'space-y-3' },
+                  warnings.slice(0, 10).map(item => h('div', { className: 'flex items-center justify-between p-3 rounded-lg bg-gray-50', key: item.id },
+                    h('div', null,
+                      h('p', { className: 'font-medium text-gray-800' }, item.materialName),
+                      h('p', { className: 'text-sm text-gray-500' }, item.warehouse + ' · ' + item.quantity + ' ' + item.unit)
+                    ),
+                    h('span', { className: `px-2 py-1 rounded-full text-xs font-medium ${
+                      item.warningLevel === 'high' ? 'bg-red-100 text-red-600' :
+                      item.warningLevel === 'medium' ? 'bg-orange-100 text-orange-600' : 'bg-yellow-100 text-yellow-600'
+                    }` },
+                      item.warningLevel === 'high' ? '高' : item.warningLevel === 'medium' ? '中' : '低'
+                    )
+                  ))
+                )
+              )
+            )
+          )
+        );
+      }
+    }
+
+    class SalesPage {
+      constructor() {
+        this.state = { selectedCategory: '全部' };
+        this.unsubscribe = store.subscribe(() => this.forceUpdate());
+      }
+      componentWillUnmount() {
+        this.unsubscribe();
+      }
+      render() {
+        const { sales, categorySales } = store;
+        const categories = ['全部', ...new Set(sales.map(s => s.category))];
+        const filteredSales = this.state.selectedCategory === '全部' ? sales : sales.filter(s => s.category === this.state.selectedCategory);
+        const columns = [
+          { key: 'productName', label: '商品名称' },
+          { key: 'category', label: '分类' },
+          { key: 'spec', label: '规格' },
+          { key: 'quantity', label: '销量' },
+          { key: 'unitPrice', label: '单价', format: v => '¥' + v },
+          { key: 'revenue', label: '销售额', format: v => '¥' + Number(v).toLocaleString() },
+        ];
+        setTimeout(() => {
+          renderBarChart('分类销售统计', categorySales);
+          renderPieChart('销售结构分析', categorySales);
+        }, 100);
+        return h(Layout, { title: '销售管理' },
+          h('div', { className: 'space-y-6' },
+            h('div', { className: 'flex items-center gap-4' },
+              h('span', { className: 'text-sm text-gray-600' }, '分类筛选：'),
+              h('select', {
+                value: this.state.selectedCategory,
+                onChange: e => this.setState({ selectedCategory: e.target.value }),
+                className: 'px-4 py-2 border border-gray-200 rounded-lg'
+              },
+                categories.map(c => h('option', { value: c }, c))
+              )
+            ),
+            h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
+              h(SimpleBarChart, { data: categorySales, title: '分类销售统计' }),
+              h(SimplePieChart, { data: categorySales, title: '销售结构分析' })
+            ),
+            h(DataTable, { columns, data: filteredSales, title: '销售明细表' })
+          )
+        );
+      }
+    }
+
+    class PurchasePage {
+      constructor() {
+        this.state = {};
+        this.unsubscribe = store.subscribe(() => this.forceUpdate());
+      }
+      componentWillUnmount() {
+        this.unsubscribe();
+      }
+      render() {
+        const { purchase } = store;
+        const categoryPurchase = purchase.reduce((acc, p) => {
+          const existing = acc.find(a => a.category === p.category);
+          if (existing) { existing.amount += p.amount; existing.quantity += p.quantity; }
+          else { acc.push({ category: p.category, amount: p.amount, quantity: p.quantity }); }
+          return acc;
+        }, []);
+        const columns = [
+          { key: 'productName', label: '商品名称' },
+          { key: 'category', label: '分类' },
+          { key: 'spec', label: '规格' },
+          { key: 'quantity', label: '购进量' },
+          { key: 'amount', label: '购进额', format: v => '¥' + Number(v).toLocaleString() },
+          { key: 'supplier', label: '供应商' },
+        ];
+        setTimeout(() => {
+          renderBarChart('采购分类统计', categoryPurchase);
+          renderPieChart('购进结构分析', categoryPurchase);
+        }, 100);
+        return h(Layout, { title: '购进管理' },
+          h('div', { className: 'space-y-6' },
+            h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
+              h(SimpleBarChart, { data: categoryPurchase, title: '采购分类统计' }),
+              h(SimplePieChart, { data: categoryPurchase, title: '购进结构分析' })
+            ),
+            h(DataTable, { columns, data: purchase, title: '购进明细表' })
+          )
+        );
+      }
+    }
+
+    class InventoryPage {
+      constructor() {
+        this.state = { selectedWarehouse: '全部' };
+        this.unsubscribe = store.subscribe(() => this.forceUpdate());
+      }
+      componentWillUnmount() {
+        this.unsubscribe();
+      }
+      render() {
+        const { inventory, warehouseDistribution } = store;
+        const warehouses = ['全部', ...new Set(inventory.map(i => i.warehouse))];
+        const filteredInventory = this.state.selectedWarehouse === '全部' ? inventory : inventory.filter(i => i.warehouse === this.state.selectedWarehouse);
+        const warningDistribution = inventory.reduce((acc, i) => { if (i.warningLevel) acc[i.warningLevel] = (acc[i.warningLevel] || 0) + 1; return acc; }, {});
+        const warningData = Object.entries(warningDistribution).map(([level, count]) => ({ level, quantity: count }));
+        const columns = [
+          { key: 'materialCode', label: '物料编码' },
+          { key: 'materialName', label: '物料名称' },
+          { key: 'spec', label: '规格' },
+          { key: 'warehouse', label: '仓库' },
+          { key: 'quantity', label: '库存量', format: v => v + ' ' + inventory[0]?.unit },
+          { key: 'warningLevel', label: '预警等级', format: v => {
+            if (v === 'high') return h('span', { className: 'text-red-600 font-medium' }, '高');
+            if (v === 'medium') return h('span', { className: 'text-orange-600 font-medium' }, '中');
+            if (v === 'low') return h('span', { className: 'text-yellow-600 font-medium' }, '低');
+            return h('span', { className: 'text-green-600' }, '正常');
+          }},
+        ];
+        setTimeout(() => {
+          renderPieChart('仓库库存分布', warehouseDistribution);
+          renderPieChart('预警分布', warningData);
+        }, 100);
+        return h(Layout, { title: '库存管理' },
+          h('div', { className: 'space-y-6' },
+            h('div', { className: 'flex items-center gap-4' },
+              h('span', { className: 'text-sm text-gray-600' }, '仓库筛选：'),
+              h('select', {
+                value: this.state.selectedWarehouse,
+                onChange: e => this.setState({ selectedWarehouse: e.target.value }),
+                className: 'px-4 py-2 border border-gray-200 rounded-lg'
+              },
+                warehouses.map(w => h('option', { value: w }, w))
+              )
+            ),
+            h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
+              h(SimplePieChart, { data: warehouseDistribution, title: '仓库库存分布' }),
+              h(SimplePieChart, { data: warningData, title: '预警分布' })
+            ),
+            h(DataTable, { columns, data: filteredInventory, title: '库存明细表' })
+          )
+        );
+      }
+    }
+
+    class AnalyticsPage {
+      constructor() {
+        this.state = {};
+        this.unsubscribe = store.subscribe(() => this.forceUpdate());
+      }
+      componentWillUnmount() {
+        this.unsubscribe();
+      }
+      render() {
+        const { monthlyStats, categorySales, sales, purchase, inventory } = store;
+        const ledgerData = categorySales.map(item => ({
+          category: item.category,
+          sales: item.revenue,
+          purchase: purchase.filter(p => p.category === item.category).reduce((sum, p) => sum + p.amount, 0),
+          inventory: inventory.filter(i => i.materialName.includes(item.category)).reduce((sum, i) => sum + i.quantity, 0),
+          balance: purchase.filter(p => p.category === item.category).reduce((sum, p) => sum + p.amount, 0) - item.revenue,
+        }));
+        const columns = [
+          { key: 'category', label: '物料分类' },
+          { key: 'sales', label: '销售额', format: v => '¥' + Number(v).toLocaleString() },
+          { key: 'purchase', label: '购进额', format: v => '¥' + Number(v).toLocaleString() },
+          { key: 'inventory', label: '库存量' },
+          { key: 'balance', label: '余额', format: v => h('span', { className: Number(v) >= 0 ? 'text-green-600' : 'text-red-600' }, (Number(v) >= 0 ? '+' : '') + '¥' + Number(v).toLocaleString()) },
+        ];
+        setTimeout(() => {
+          renderLineChart('进销存趋势分析', monthlyStats);
+          renderBarChart('商品销售排行', sales.sort((a, b) => b.revenue - a.revenue));
+        }, 100);
+        return h(Layout, { title: '数据分析' },
+          h('div', { className: 'space-y-6' },
+            h('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-6' },
+              h(SimpleLineChart, { data: monthlyStats, title: '进销存趋势分析' }),
+              h(SimpleBarChart, { data: sales.sort((a, b) => b.revenue - a.revenue), title: '商品销售排行' })
+            ),
+            h(DataTable, { columns, data: ledgerData, title: '分类经营台账' }),
+            h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100' },
+              h('h3', { className: 'text-lg font-semibold text-gray-800 mb-4' }, '数据概览'),
+              h('div', { className: 'grid grid-cols-1 md:grid-cols-4 gap-6' },
+                h('div', { className: 'bg-blue-50 rounded-lg p-4' },
+                  h('p', { className: 'text-blue-600 text-sm' }, '总销售额'),
+                  h('p', { className: 'text-2xl font-bold text-gray-800' }, '¥' + sales.reduce((sum, s) => sum + s.revenue, 0).toLocaleString())
+                ),
+                h('div', { className: 'bg-green-50 rounded-lg p-4' },
+                  h('p', { className: 'text-green-600 text-sm' }, '总购进额'),
+                  h('p', { className: 'text-2xl font-bold text-gray-800' }, '¥' + purchase.reduce((sum, p) => sum + p.amount, 0).toLocaleString())
+                ),
+                h('div', { className: 'bg-orange-50 rounded-lg p-4' },
+                  h('p', { className: 'text-orange-600 text-sm' }, '总库存量'),
+                  h('p', { className: 'text-2xl font-bold text-gray-800' }, inventory.reduce((sum, i) => sum + i.quantity, 0).toLocaleString() + ' 件')
+                ),
+                h('div', { className: 'bg-purple-50 rounded-lg p-4' },
+                  h('p', { className: 'text-purple-600 text-sm' }, '商品种类'),
+                  h('p', { className: 'text-2xl font-bold text-gray-800' }, inventory.length + ' 种')
+                )
+              )
+            )
+          )
+        );
+      }
+    }
+
+    class UploadPage {
+      constructor() {
+        this.state = { uploadType: 'inventory', message: null };
+      }
+      handleFileUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const csv = event.target.result;
+            const lines = csv.split('\n').filter(line => line.trim());
+            const headers = lines[0].split(',').map(h => h.trim());
+            const data = lines.slice(1).map(line => {
+              const values = line.split(',');
+              return headers.reduce((acc, header, idx) => { acc[header] = values[idx]?.trim(); return acc; }, {});
+            });
+            switch (this.state.uploadType) {
+              case 'inventory':
+                store.setInventory(data.map((item, idx) => ({
+                  id: 'upload-' + Date.now() + '-' + idx,
+                  materialCode: item['物料编码'] || item['materialCode'] || '',
+                  materialName: item['物料名称'] || item['materialName'] || item['productName'] || '',
+                  spec: item['规格'] || item['spec'] || '',
+                  warehouse: item['仓库'] || item['warehouse'] || '',
+                  quantity: Number(item['结存主数量'] || item['quantity'] || 0),
+                  unit: item['单位'] || item['unit'] || '袋',
+                })));
+                break;
+              case 'sales':
+                store.setSales(data.map((item, idx) => ({
+                  id: 'upload-' + Date.now() + '-' + idx,
+                  category: item['物料分类'] || item['category'] || '',
+                  productName: item['商品名称'] || item['productName'] || '',
+                  spec: item['规格'] || item['spec'] || '',
+                  quantity: Number(item['销量'] || item['quantity'] || 0),
+                  revenue: Number(item['销售收入'] || item['revenue'] || 0),
+                  unitPrice: Number(item['单价'] || item['unitPrice'] || 0),
+                  date: item['日期'] || new Date().toISOString().slice(0, 7),
+                })));
+                break;
+              case 'purchase':
+                store.setPurchase(data.map((item, idx) => ({
+                  id: 'upload-' + Date.now() + '-' + idx,
+                  category: item['物料分类'] || item['category'] || '',
+                  productName: item['商品名称'] || item['productName'] || '',
+                  spec: item['规格'] || item['spec'] || '',
+                  quantity: Number(item['购进量'] || item['quantity'] || 0),
+                  amount: Number(item['购进额'] || item['amount'] || 0),
+                  supplier: item['供应商'] || item['supplier'] || '',
+                  date: item['日期'] || new Date().toISOString().slice(0, 7),
+                })));
+                break;
+            }
+            this.setState({ message: { type: 'success', text: '成功上传 ' + data.length + ' 条数据！' } });
+            setTimeout(() => this.setState({ message: null }), 3000);
+          } catch (error) {
+            this.setState({ message: { type: 'error', text: '数据解析失败，请检查文件格式！' } });
+            setTimeout(() => this.setState({ message: null }), 3000);
+          }
+        };
+        reader.readAsText(file);
+      }
+      render() {
+        return h(Layout, { title: '数据上传' },
+          h('div', { className: 'space-y-6' },
+            this.state.message && h('div', { className: 'flex items-center gap-3 p-4 rounded-lg ' + (this.state.message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700') },
+              h('span', { className: 'w-5 h-5', dangerouslySetInnerHTML: createIcon(this.state.message.type === 'success' ? 'CheckCircle' : 'AlertCircle') }),
+              h('span', null, this.state.message.text)
+            ),
+            h('div', { className: 'flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm border border-gray-100' },
+              h('span', { className: 'text-sm text-gray-600' }, '上传类型：'),
+              h('div', { className: 'flex gap-2' },
+                h('button', { onClick: () => this.setState({ uploadType: 'inventory' }), className: 'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (this.state.uploadType === 'inventory' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600') }, '库存数据'),
+                h('button', { onClick: () => this.setState({ uploadType: 'sales' }), className: 'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (this.state.uploadType === 'sales' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600') }, '销售数据'),
+                h('button', { onClick: () => this.setState({ uploadType: 'purchase' }), className: 'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (this.state.uploadType === 'purchase' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600') }, '购进数据')
+              )
+            ),
+            h('div', { className: 'bg-white rounded-xl p-6 shadow-sm border border-gray-100' },
+              h('div', { className: 'border-2 border-dashed border-gray-300 rounded-xl p-12 text-center hover:border-blue-500 transition-colors' },
+                h('span', { className: 'w-12 h-12 text-gray-400 mx-auto mb-4', dangerouslySetInnerHTML: createIcon('Upload') }),
+                h('p', { className: 'text-gray-600 mb-2' }, '拖拽CSV文件到此处，或点击选择文件'),
+                h('p', { className: 'text-sm text-gray-400' }, '支持 .csv 格式文件'),
+                h('input', { type: 'file', accept: '.csv', onChange: e => this.handleFileUpload(e), className: 'mt-4 w-full h-10 opacity-0 absolute' }),
+                h('button', { onClick: () => document.querySelector('input[type="file"]').click() }, { className: 'mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' }, '选择文件')
+              )
+            )
+          )
+        );
+      }
+    }
+
+    function renderLineChart(title, data) {
+      const ctx = document.getElementById('line-' + title);
+      if (!ctx) return;
+      const canvas = ctx;
+      const ctx2 = canvas.getContext('2d');
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight || 300;
+      canvas.width = width;
+      canvas.height = height;
+      const padding = { top: 30, right: 30, bottom: 40, left: 50 };
+      const chartWidth = width - padding.left - padding.right;
+      const chartHeight = height - padding.top - padding.bottom;
+      const maxValue = Math.max(...data.map(d => Math.max(d.sales, d.purchase, d.inventory))) * 1.1;
+      ctx2.clearRect(0, 0, width, height);
+      ctx2.strokeStyle = '#e5e7eb';
+      ctx2.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding.top + (chartHeight / 4) * i;
+        ctx2.beginPath();
+        ctx2.moveTo(padding.left, y);
+        ctx2.lineTo(width - padding.right, y);
+        ctx2.stroke();
+        ctx2.fillStyle = '#6b7280';
+        ctx2.font = '12px sans-serif';
+        ctx2.textAlign = 'right';
+        ctx2.fillText(Math.round(maxValue - (maxValue / 4) * i).toLocaleString(), padding.left - 5, y + 4);
+      }
+      ctx2.fillStyle = '#6b7280';
+      ctx2.font = '12px sans-serif';
+      ctx2.textAlign = 'center';
+      data.forEach((d, i) => {
+        const x = padding.left + (chartWidth / (data.length - 1)) * i;
+        ctx2.fillText(d.month, x, height - 10);
+      });
+      const datasets = [
+        { data: data.map(d => d.sales), color: '#3b82f6', label: '销售额' },
+        { data: data.map(d => d.purchase), color: '#10b981', label: '购进额' },
+        { data: data.map(d => d.inventory), color: '#f59e0b', label: '库存量' },
+      ];
+      datasets.forEach(ds => {
+        ctx2.beginPath();
+        ctx2.strokeStyle = ds.color;
+        ctx2.lineWidth = 2;
+        ctx2.lineCap = 'round';
+        ctx2.lineJoin = 'round';
+        ds.data.forEach((value, i) => {
+          const x = padding.left + (chartWidth / (data.length - 1)) * i;
+          const y = padding.top + chartHeight - (value / maxValue) * chartHeight;
+          if (i === 0) ctx2.moveTo(x, y);
+          else ctx2.lineTo(x, y);
+        });
+        ctx2.stroke();
+        ctx2.fillStyle = ds.color;
+        ds.data.forEach((value, i) => {
+          const x = padding.left + (chartWidth / (data.length - 1)) * i;
+          const y = padding.top + chartHeight - (value / maxValue) * chartHeight;
+          ctx2.beginPath();
+          ctx2.arc(x, y, 4, 0, Math.PI * 2);
+          ctx2.fill();
+        });
+      });
+      ctx2.fillStyle = '#6b7280';
+      ctx2.font = '12px sans-serif';
+      ctx2.textAlign = 'left';
+      datasets.forEach((ds, i) => {
+        const x = padding.left + 10 + i * 100;
+        const y = padding.top + 20;
+        ctx2.fillStyle = ds.color;
+        ctx2.fillRect(x, y - 5, 12, 2);
+        ctx2.fillStyle = '#6b7280';
+        ctx2.fillText(ds.label, x + 16, y);
+      });
+    }
+
+    function renderPieChart(title, data) {
+      const ctx = document.getElementById('pie-' + title);
+      if (!ctx) return;
+      const canvas = ctx;
+      const ctx2 = canvas.getContext('2d');
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight || 300;
+      canvas.width = width;
+      canvas.height = height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = Math.min(width, height) / 2 - 40;
+      ctx2.clearRect(0, 0, width, height);
+      const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
+      const total = data.reduce((sum, d) => sum + (d.revenue || d.quantity), 0);
+      let startAngle = -Math.PI / 2;
+      data.forEach((d, i) => {
+        const value = d.revenue || d.quantity;
+        const sliceAngle = (value / total) * Math.PI * 2;
+        const endAngle = startAngle + sliceAngle;
+        ctx2.beginPath();
+        ctx2.moveTo(centerX, centerY);
+        ctx2.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx2.closePath();
+        ctx2.fillStyle = colors[i % colors.length];
+        ctx2.fill();
+        startAngle = endAngle;
+      });
+      ctx2.fillStyle = '#ffffff';
+      ctx2.beginPath();
+      ctx2.arc(centerX, centerY, radius * 0.6, 0, Math.PI * 2);
+      ctx2.fill();
+      ctx2.fillStyle = '#1f2937';
+      ctx2.font = 'bold 20px sans-serif';
+      ctx2.textAlign = 'center';
+      ctx2.fillText(total.toLocaleString(), centerX, centerY);
+      ctx2.font = '12px sans-serif';
+      ctx2.fillStyle = '#6b7280';
+      ctx2.fillText('总数', centerX, centerY + 20);
+      let legendY = centerY + radius + 20;
+      data.forEach((d, i) => {
+        const x = centerX - 80 + (i % 2) * 160;
+        const y = legendY + Math.floor(i / 2) * 20;
+        ctx2.fillStyle = colors[i % colors.length];
+        ctx2.fillRect(x, y - 5, 12, 12);
+        ctx2.fillStyle = '#6b7280';
+        ctx2.font = '12px sans-serif';
+        ctx2.textAlign = 'left';
+        ctx2.fillText(d.category || d.warehouse || d.level, x + 16, y + 4);
+      });
+    }
+
+    function renderBarChart(title, data) {
+      const ctx = document.getElementById('bar-' + title);
+      if (!ctx) return;
+      const canvas = ctx;
+      const ctx2 = canvas.getContext('2d');
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight || 300;
+      canvas.width = width;
+      canvas.height = height;
+      const padding = { top: 30, right: 30, bottom: 60, left: 50 };
+      const chartWidth = width - padding.left - padding.right;
+      const chartHeight = height - padding.top - padding.bottom;
+      const displayData = data.slice(0, 10);
+      const maxValue = Math.max(...displayData.map(d => d.revenue || d.quantity)) * 1.1;
+      ctx2.clearRect(0, 0, width, height);
+      ctx2.strokeStyle = '#e5e7eb';
+      ctx2.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding.top + (chartHeight / 4) * i;
+        ctx2.beginPath();
+        ctx2.moveTo(padding.left, y);
+        ctx2.lineTo(width - padding.right, y);
+        ctx2.stroke();
+        ctx2.fillStyle = '#6b7280';
+        ctx2.font = '12px sans-serif';
+        ctx2.textAlign = 'right';
+        ctx2.fillText(Math.round(maxValue - (maxValue / 4) * i).toLocaleString(), padding.left - 5, y + 4);
+      }
+      const barWidth = chartWidth / displayData.length * 0.6;
+      const gap = chartWidth / displayData.length * 0.4;
+      const colors = ['#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe', '#dbeafe', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe', '#dbeafe'];
+      displayData.forEach((d, i) => {
+        const x = padding.left + (chartWidth / displayData.length) * i + gap / 2;
+        const value = d.revenue || d.quantity;
+        const barHeight = (value / maxValue) * chartHeight;
+        ctx2.fillStyle = colors[i];
+        ctx2.fillRect(x, padding.top + chartHeight - barHeight, barWidth, barHeight);
+        ctx2.fillStyle = '#6b7280';
+        ctx2.font = '10px sans-serif';
+        ctx2.textAlign = 'center';
+        const label = (d.productName || d.category || d.warehouse);
+        ctx2.fillText(label.length > 8 ? label.slice(0, 8) + '...' : label, x + barWidth / 2, height - 10);
+      });
+    }
+
+    function init() {
+      const root = document.getElementById('root');
+      root.innerHTML = '';
+      const currentRoute = router.getCurrentRoute();
+      if (currentRoute) {
+        const vnode = h(currentRoute.component);
+        render(vnode, root);
+      }
+      router.subscribe(() => {
+        root.innerHTML = '';
+        const route = router.getCurrentRoute();
+        if (route) {
+          const vnode = h(route.component);
+          render(vnode, root);
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
