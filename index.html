@@ -33,6 +33,8 @@
     .warning-medium { color: #ea580c; font-weight: 600; }
     .warning-low { color: #ca8a04; font-weight: 600; }
     .canvas-container { width: 100%; height: 300px; }
+    .growth-up { color: #10b981; font-weight: 600; }
+    .growth-down { color: #ef4444; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -40,59 +42,107 @@
   <script>
     const store = {
       inventory: [
-        { id: '1', materialCode: 'YL001', materialName: '精制食用盐(加碘)', spec: '500g/袋', warehouse: '荆州仓库', quantity: 12500, unit: '袋', warningLevel: 'low' },
-        { id: '2', materialCode: 'YL002', materialName: '低钠盐', spec: '400g/袋', warehouse: '宜昌仓库', quantity: 8200, unit: '袋', warningLevel: null },
-        { id: '3', materialCode: 'YL003', materialName: '海藻碘盐', spec: '350g/袋', warehouse: '荆州仓库', quantity: 3500, unit: '袋', warningLevel: 'high' },
-        { id: '4', materialCode: 'YL004', materialName: '深井盐', spec: '1kg/袋', warehouse: '襄阳仓库', quantity: 6800, unit: '袋', warningLevel: null },
-        { id: '5', materialCode: 'YL005', materialName: '竹盐', spec: '250g/罐', warehouse: '荆州仓库', quantity: 2100, unit: '罐', warningLevel: 'high' },
-        { id: '6', materialCode: 'YL006', materialName: '雪花盐', spec: '300g/袋', warehouse: '宜昌仓库', quantity: 4500, unit: '袋', warningLevel: 'medium' },
-        { id: '7', materialCode: 'YL007', materialName: '腌制盐', spec: '5kg/袋', warehouse: '襄阳仓库', quantity: 1500, unit: '袋', warningLevel: 'high' },
-        { id: '8', materialCode: 'YL008', materialName: '工业盐', spec: '25kg/袋', warehouse: '荆州仓库', quantity: 28000, unit: '袋', warningLevel: null },
-        { id: '9', materialCode: 'YL009', materialName: '饲料盐', spec: '50kg/袋', warehouse: '宜昌仓库', quantity: 18000, unit: '袋', warningLevel: null },
-        { id: '10', materialCode: 'YL010', materialName: '畜牧盐', spec: '40kg/袋', warehouse: '襄阳仓库', quantity: 12000, unit: '袋', warningLevel: 'low' },
+        { id: '1', materialCode: 'YC001', materialName: '云鹤 500g 精制碘盐', spec: '500g/袋', warehouse: '荆州分公司中心库', quantity: 900.6225, unit: '吨', warningLevel: 'low' },
+        { id: '2', materialCode: 'YC002', materialName: '九凤来 500g 碘盐', spec: '500g/袋', warehouse: '荆州分公司中心库', quantity: 557.325, unit: '吨', warningLevel: 'medium' },
+        { id: '3', materialCode: 'YC003', materialName: '云鹤 50kg 精制碘盐', spec: '50kg/袋', warehouse: '储备盐库', quantity: 70.15, unit: '吨', warningLevel: 'high' },
+        { id: '4', materialCode: 'YC004', materialName: '云鹤 50kg 未加碘', spec: '50kg/袋', warehouse: '储备盐库', quantity: 46.77, unit: '吨', warningLevel: null },
+        { id: '5', materialCode: 'YC005', materialName: '工业盐', spec: '50kg/袋', warehouse: '储备盐库', quantity: 34.8, unit: '吨', warningLevel: null },
+        { id: '6', materialCode: 'NY001', materialName: '中昌 20L 非转大豆油', spec: '20L/桶', warehouse: '荆州分公司中心库', quantity: 9.0608, unit: '吨', warningLevel: null },
+        { id: '7', materialCode: 'NY002', materialName: '千湖 20L 转基因大豆油', spec: '20L/桶', warehouse: '荆州分公司中心库', quantity: 0.1448, unit: '吨', warningLevel: 'high' },
+        { id: '8', materialCode: 'ST001', materialName: '雪砂白砂糖', spec: '多规格', warehouse: '商超寄售库', quantity: 4.94, unit: '吨', warningLevel: null },
+        { id: '9', materialCode: 'TW001', materialName: '武当醋', spec: '件', warehouse: '商超寄售库', quantity: 0.76, unit: '吨', warningLevel: null },
+        { id: '10', materialCode: 'TW002', materialName: '葱姜料酒', spec: '件', warehouse: '商超寄售库', quantity: 0.78, unit: '吨', warningLevel: null },
+        { id: '11', materialCode: 'TW003', materialName: '庐陵王黄酒', spec: '箱', warehouse: '商超寄售库', quantity: 0.42, unit: '吨', warningLevel: null },
+        { id: '12', materialCode: 'YC006', materialName: '云鹤 500g 精制碘盐', spec: '500g/袋', warehouse: '储备盐库', quantity: 200, unit: '吨', warningLevel: null },
+        { id: '13', materialCode: 'YC007', materialName: '云鹤 500g 精制碘盐', spec: '500g/袋', warehouse: '商超寄售库', quantity: 287, unit: '吨', warningLevel: null },
+        { id: '14', materialCode: 'YC008', materialName: '九凤来 500g 碘盐', spec: '500g/袋', warehouse: '储备盐库', quantity: 100, unit: '吨', warningLevel: null },
+        { id: '15', materialCode: 'YC009', materialName: '九凤来 500g 碘盐', spec: '500g/袋', warehouse: '商超寄售库', quantity: 80, unit: '吨', warningLevel: null },
+        { id: '16', materialCode: 'YC010', materialName: '其他基础盐', spec: '多规格', warehouse: '荆州分公司中心库', quantity: 1650, unit: '吨', warningLevel: null },
+        { id: '17', materialCode: 'YC011', materialName: '其他大袋盐', spec: '多规格', warehouse: '储备盐库', quantity: 300, unit: '吨', warningLevel: null },
+        { id: '18', materialCode: 'YC012', materialName: '其他盐类', spec: '多规格', warehouse: '商超寄售库', quantity: 210.0054, unit: '吨', warningLevel: null },
       ],
       sales: [
-        { id: '1', category: '食用盐', productName: '精制食用盐(加碘)', spec: '500g/袋', quantity: 32000, revenue: 96000, unitPrice: 3.00, date: '2026-06' },
-        { id: '2', category: '食用盐', productName: '低钠盐', spec: '400g/袋', quantity: 15000, revenue: 52500, unitPrice: 3.50, date: '2026-06' },
-        { id: '3', category: '食用盐', productName: '海藻碘盐', spec: '350g/袋', quantity: 8000, revenue: 36000, unitPrice: 4.50, date: '2026-06' },
-        { id: '4', category: '工业盐', productName: '工业盐', spec: '25kg/袋', quantity: 5000, revenue: 40000, unitPrice: 8.00, date: '2026-06' },
-        { id: '5', category: '畜牧盐', productName: '饲料盐', spec: '50kg/袋', quantity: 3000, revenue: 24000, unitPrice: 8.00, date: '2026-06' },
-        { id: '6', category: '食用盐', productName: '深井盐', spec: '1kg/袋', quantity: 12000, revenue: 42000, unitPrice: 3.50, date: '2026-06' },
-        { id: '7', category: '食用盐', productName: '竹盐', spec: '250g/罐', quantity: 4000, revenue: 32000, unitPrice: 8.00, date: '2026-06' },
-        { id: '8', category: '食用盐', productName: '雪花盐', spec: '300g/袋', quantity: 9000, revenue: 40500, unitPrice: 4.50, date: '2026-06' },
-        { id: '9', category: '腌制盐', productName: '腌制盐', spec: '5kg/袋', quantity: 2000, revenue: 18000, unitPrice: 9.00, date: '2026-06' },
-        { id: '10', category: '畜牧盐', productName: '畜牧盐', spec: '40kg/袋', quantity: 2500, revenue: 20000, unitPrice: 8.00, date: '2026-06' },
+        { id: '1', category: '基础盐', productName: '云鹤 500g 精制碘盐', spec: '500g/袋', quantity: 1.8, revenue: 1274.34, unitPrice: 707.97, date: '2026-07' },
+        { id: '2', category: '大袋盐', productName: '云鹤 50kg 精制碘盐', spec: '50kg/袋', quantity: 35.5, revenue: 20651.36, unitPrice: 581.73, date: '2026-07' },
+        { id: '3', category: '大袋盐', productName: '云鹤 50kg 未加碘', spec: '50kg/袋', quantity: 44, revenue: 24940.36, unitPrice: 566.83, date: '2026-07' },
+        { id: '4', category: '特需盐', productName: '九凤来 500g 碘盐', spec: '500g/袋', quantity: 47.025, revenue: 29519.28, unitPrice: 627.73, date: '2026-07' },
+        { id: '5', category: '特需盐', productName: '九凤来 500g 碘盐', spec: '500g/袋', quantity: 47.025, revenue: 29519.28, unitPrice: 627.73, date: '2026-07' },
+        { id: '6', category: '工业盐', productName: '工业盐', spec: '50kg/袋', quantity: 1.8, revenue: 1274.34, unitPrice: 707.97, date: '2026-07' },
+        { id: '7', category: '食用海盐', productName: '云鹤 50kg 加碘海盐', spec: '50kg/袋', quantity: -0.2, revenue: -251.01, unitPrice: 1255.05, date: '2026-07' },
+        { id: '8', category: '高端盐', productName: '云鹤 500g 高端海盐', spec: '500g/袋', quantity: 0.15, revenue: 568.81, unitPrice: 3792.07, date: '2026-07' },
+        { id: '9', category: '高端盐', productName: '云鹤 200g 高端盐', spec: '200g/袋', quantity: 0.03, revenue: 1277.43, unitPrice: 42581, date: '2026-07' },
+        { id: '10', category: '高端盐', productName: '云鹤 350g 高端盐', spec: '350g/袋', quantity: 0.021, revenue: 154.13, unitPrice: 7339.52, date: '2026-07' },
+        { id: '11', category: '中端盐', productName: '云鹤 400g 绿色盐', spec: '400g/袋', quantity: 2.7368, revenue: 8689.93, unitPrice: 3175.21, date: '2026-07' },
+        { id: '12', category: '工业海盐', productName: '雪玉春 50L', spec: '50L/桶', quantity: 1.5, revenue: 1277.43, unitPrice: 851.62, date: '2026-07' },
+        { id: '13', category: '白砂糖', productName: '雪砂系列白砂糖', spec: '多规格', quantity: 1.3087, revenue: 8726.42, unitPrice: 6667.99, date: '2026-07' },
+        { id: '14', category: '白砂糖', productName: '大包装白砂 50kg 一级', spec: '50kg/袋', quantity: 160, revenue: 742831.87, unitPrice: 4642.70, date: '2026-07' },
+        { id: '15', category: '农发粮油', productName: '千湖 20L 转基因大豆油', spec: '20L/桶', quantity: 1702, revenue: 265724.77, unitPrice: 156.12, date: '2026-07' },
+        { id: '16', category: '农发粮油', productName: '中昌 20L 非转大豆油', spec: '20L/桶', quantity: 200, revenue: 36330.28, unitPrice: 181.65, date: '2026-07' },
+        { id: '17', category: '农发粮油', productName: '中昌 20L 非转大豆油', spec: '20L/桶', quantity: 900, revenue: 162557.80, unitPrice: 180.62, date: '2026-07' },
+        { id: '18', category: '农发粮油', productName: '中昌 20L 非转大豆油', spec: '20L/桶', quantity: 20, revenue: 3633.03, unitPrice: 181.65, date: '2026-07' },
+        { id: '19', category: '调味品/酒类', productName: '武当醋', spec: '500ml/瓶', quantity: 10, revenue: 433.63, unitPrice: 43.36, date: '2026-07' },
+        { id: '20', category: '调味品/酒类', productName: '香辣王', spec: '件', quantity: 104, revenue: 4879.67, unitPrice: 46.92, date: '2026-07' },
+        { id: '21', category: '调味品/酒类', productName: '庐陵王黄酒', spec: '48箱', quantity: 50, revenue: 254.86, unitPrice: 5.10, date: '2026-07' },
+        { id: '22', category: '洗涤盐', productName: '小龙 400g 洗涤盐', spec: '400g/袋', quantity: 0.064, revenue: 495.58, unitPrice: 7743.44, date: '2026-07' },
       ],
       purchase: [
-        { id: '1', category: '食用盐', productName: '精制食用盐(加碘)', spec: '500g/袋', quantity: 40000, amount: 100000, supplier: '湖北盐业集团', date: '2026-06' },
-        { id: '2', category: '食用盐', productName: '低钠盐', spec: '400g/袋', quantity: 20000, amount: 60000, supplier: '湖北盐业集团', date: '2026-06' },
-        { id: '3', category: '工业盐', productName: '工业盐', spec: '25kg/袋', quantity: 8000, amount: 56000, supplier: '湖南盐业', date: '2026-06' },
-        { id: '4', category: '畜牧盐', productName: '饲料盐', spec: '50kg/袋', quantity: 5000, amount: 35000, supplier: '江西盐业', date: '2026-06' },
-        { id: '5', category: '食用盐', productName: '深井盐', spec: '1kg/袋', quantity: 15000, amount: 42000, supplier: '湖北盐业集团', date: '2026-06' },
+        { id: '1', category: '大袋盐', productName: '云鹤 50kg 未加碘', spec: '50kg/袋', quantity: 35, amount: 20000, supplier: '湖北盐业集团', date: '2026-07' },
+        { id: '2', category: '大袋盐', productName: '云鹤 50kg 未加碘', spec: '50kg/袋', quantity: 35, amount: 20000, supplier: '湖北盐业集团', date: '2026-07' },
+        { id: '3', category: '高端盐', productName: '蓝天三品', spec: '多规格', quantity: 100, amount: 150000, supplier: '进口贸易商', date: '2026-07' },
+        { id: '4', category: '白砂糖', productName: '大包装白砂 50kg 一级', spec: '50kg/袋', quantity: 160, amount: 742831.87, supplier: '武汉糖业公司', date: '2026-07' },
+        { id: '5', category: '大袋盐', productName: '云鹤 50kg 精制碘盐', spec: '50kg/袋', quantity: 15, amount: 8700, supplier: '湖北盐业集团', date: '2026-07' },
+        { id: '6', category: '大袋盐', productName: '云鹤 50kg', spec: '50kg/袋', quantity: 35, amount: 20000, supplier: '湖北盐业集团', date: '2026-07' },
+        { id: '7', category: '农发粮油', productName: '千湖 20L 转基因大豆油', spec: '20L/桶', quantity: 1710, amount: 267000, supplier: '中粮集团', date: '2026-07' },
+        { id: '8', category: '农发粮油', productName: '中昌 20L 非转大豆油', spec: '20L/桶', quantity: 200, amount: 36330.28, supplier: '中粮集团', date: '2026-07' },
+        { id: '9', category: '农发粮油', productName: '中昌 20L 非转大豆油', spec: '20L/桶', quantity: 600, amount: 108990.84, supplier: '中粮集团', date: '2026-07' },
+        { id: '10', category: '农发粮油', productName: '中昌 20L 非转大豆油', spec: '20L/桶', quantity: 3, amount: 544.95, supplier: '中粮集团', date: '2026-07' },
+        { id: '11', category: '酒类', productName: '庐陵王气泡酒', spec: '箱', quantity: 50, amount: 25000, supplier: '庐陵王酒业', date: '2026-07' },
+        { id: '12', category: '白砂糖', productName: '雪砂白砂糖 269g', spec: '269g/袋', quantity: 4.69, amount: 31200, supplier: '武汉糖业公司', date: '2026-07' },
+        { id: '13', category: '中端盐', productName: '云鹤 400g', spec: '400g/袋', quantity: 7.208, amount: 22880, supplier: '湖北盐业集团', date: '2026-07' },
+        { id: '14', category: '基础盐', productName: '云鹤 500g 精制碘盐', spec: '500g/袋', quantity: 225, amount: 158200, supplier: '湖北盐业集团', date: '2026-07' },
       ],
       monthlyStats: [
-        { month: '1月', sales: 280000, purchase: 320000, inventory: 156000 },
-        { month: '2月', sales: 310000, purchase: 280000, inventory: 126000 },
-        { month: '3月', sales: 340000, purchase: 350000, inventory: 136000 },
-        { month: '4月', sales: 380000, purchase: 400000, inventory: 156000 },
-        { month: '5月', sales: 420000, purchase: 380000, inventory: 116000 },
-        { month: '6月', sales: 400000, purchase: 420000, inventory: 136000 },
+        { month: '2025-08', sales: 1500000, purchase: 1800000, inventory: 4200 },
+        { month: '2025-09', sales: 1650000, purchase: 1900000, inventory: 4300 },
+        { month: '2025-10', sales: 1700000, purchase: 1750000, inventory: 4100 },
+        { month: '2025-11', sales: 1750000, purchase: 1950000, inventory: 4250 },
+        { month: '2025-12', sales: 1800000, purchase: 2000000, inventory: 4180 },
+        { month: '2026-01', sales: 1780000, purchase: 1980000, inventory: 4220 },
+        { month: '2026-02', sales: 1600000, purchase: 1700000, inventory: 4350 },
+        { month: '2026-03', sales: 1680000, purchase: 1850000, inventory: 4300 },
+        { month: '2026-04', sales: 1720000, purchase: 1880000, inventory: 4280 },
+        { month: '2026-05', sales: 1760000, purchase: 1820000, inventory: 4200 },
+        { month: '2026-06', sales: 1800000, purchase: 1920000, inventory: 4320 },
+        { month: '2026-07', sales: 1835601.14, purchase: 1483477.94, inventory: 4452.7785 },
       ],
       get stats() {
         return {
-          totalSales: this.sales.reduce((sum, s) => sum + s.revenue, 0),
+          totalSales: 1835601.14,
           totalPurchase: this.purchase.reduce((sum, p) => sum + p.amount, 0),
-          totalInventory: this.inventory.reduce((sum, i) => sum + i.quantity, 0),
+          totalInventory: 4452.7785,
           totalWarnings: this.inventory.filter(i => i.warningLevel).length,
+          salesGrowth: 1.98,
+          purchaseGrowth: -22.74,
+          inventoryGrowth: 3.07,
         };
       },
       get categorySales() {
-        return this.sales.reduce((acc, s) => {
-          const existing = acc.find(a => a.category === s.category);
-          if (existing) { existing.revenue += s.revenue; }
-          else { acc.push({ category: s.category, revenue: s.revenue }); }
-          return acc;
-        }, []);
+        const result = {};
+        this.sales.forEach(s => {
+          if (!result[s.category]) result[s.category] = { category: s.category, revenue: 0, quantity: 0 };
+          result[s.category].revenue += s.revenue;
+          result[s.category].quantity += s.quantity;
+        });
+        return Object.values(result);
+      },
+      get warehouseDistribution() {
+        const result = {};
+        this.inventory.forEach(i => {
+          if (!result[i.warehouse]) result[i.warehouse] = { warehouse: i.warehouse, quantity: 0 };
+          result[i.warehouse].quantity += i.quantity;
+        });
+        const total = this.inventory.reduce((sum, i) => sum + i.quantity, 0);
+        return Object.values(result).map(w => ({ ...w, percentage: (w.quantity / total * 100).toFixed(1) }));
       },
       get warnings() {
         return this.inventory.filter(i => i.warningLevel);
@@ -100,7 +150,11 @@
     };
 
     function formatCurrency(value) {
-      return '¥' + Number(value).toLocaleString();
+      return '¥' + Number(value).toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatNumber(value) {
+      return Number(value).toLocaleString('zh-CN', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
     }
 
     function renderHeader() {
@@ -119,14 +173,23 @@
           <div class="stat-card blue">
             <div class="label">销售总额</div>
             <div class="value">${formatCurrency(stats.totalSales)}</div>
+            <div style="font-size: 12px; margin-top: 4px; ${stats.salesGrowth >= 0 ? 'color: #10b981;' : 'color: #ef4444;'}">
+              ${stats.salesGrowth >= 0 ? '↑' : '↓'} ${Math.abs(stats.salesGrowth)}%
+            </div>
           </div>
           <div class="stat-card green">
             <div class="label">购进总额</div>
             <div class="value">${formatCurrency(stats.totalPurchase)}</div>
+            <div style="font-size: 12px; margin-top: 4px; ${stats.purchaseGrowth >= 0 ? 'color: #10b981;' : 'color: #ef4444;'}">
+              ${stats.purchaseGrowth >= 0 ? '↑' : '↓'} ${Math.abs(stats.purchaseGrowth)}%
+            </div>
           </div>
           <div class="stat-card orange">
             <div class="label">库存总量</div>
-            <div class="value">${stats.totalInventory.toLocaleString()} 件</div>
+            <div class="value">${formatNumber(stats.totalInventory)} 吨</div>
+            <div style="font-size: 12px; margin-top: 4px; ${stats.inventoryGrowth >= 0 ? 'color: #10b981;' : 'color: #ef4444;'}">
+              ${stats.inventoryGrowth >= 0 ? '↑' : '↓'} ${Math.abs(stats.inventoryGrowth)}%
+            </div>
           </div>
           <div class="stat-card red">
             <div class="label">预警数量</div>
@@ -153,6 +216,7 @@
     function renderDashboard() {
       const stats = store.stats;
       const warnings = store.warnings.slice(0, 5);
+      const warehouseDist = store.warehouseDistribution;
       return `
         <div class="content">
           <h2>看板总览</h2>
@@ -160,14 +224,23 @@
             <div class="stat-card blue">
               <div class="label">销售总额</div>
               <div class="value">${formatCurrency(stats.totalSales)}</div>
+              <div style="font-size: 12px; margin-top: 4px; ${stats.salesGrowth >= 0 ? 'color: #10b981;' : 'color: #ef4444;'}">
+                ${stats.salesGrowth >= 0 ? '↑' : '↓'} ${Math.abs(stats.salesGrowth)}%
+              </div>
             </div>
             <div class="stat-card green">
               <div class="label">购进总额</div>
               <div class="value">${formatCurrency(stats.totalPurchase)}</div>
+              <div style="font-size: 12px; margin-top: 4px; ${stats.purchaseGrowth >= 0 ? 'color: #10b981;' : 'color: #ef4444;'}">
+                ${stats.purchaseGrowth >= 0 ? '↑' : '↓'} ${Math.abs(stats.purchaseGrowth)}%
+              </div>
             </div>
             <div class="stat-card orange">
               <div class="label">库存总量</div>
-              <div class="value">${stats.totalInventory.toLocaleString()} 件</div>
+              <div class="value">${formatNumber(stats.totalInventory)} 吨</div>
+              <div style="font-size: 12px; margin-top: 4px; ${stats.inventoryGrowth >= 0 ? 'color: #10b981;' : 'color: #ef4444;'}">
+                ${stats.inventoryGrowth >= 0 ? '↑' : '↓'} ${Math.abs(stats.inventoryGrowth)}%
+              </div>
             </div>
             <div class="stat-card red">
               <div class="label">预警数量</div>
@@ -178,9 +251,15 @@
             <h3 style="font-size: 16px; margin-bottom: 12px;">月度趋势分析</h3>
             <canvas id="lineChart" width="800" height="300"></canvas>
           </div>
-          <div style="margin-bottom: 24px;">
-            <h3 style="font-size: 16px; margin-bottom: 12px;">分类销售占比</h3>
-            <canvas id="pieChart" width="400" height="300"></canvas>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+            <div>
+              <h3 style="font-size: 16px; margin-bottom: 12px;">分类销售占比</h3>
+              <canvas id="pieChart" width="350" height="300"></canvas>
+            </div>
+            <div>
+              <h3 style="font-size: 16px; margin-bottom: 12px;">仓库分布</h3>
+              <canvas id="warehouseChart" width="350" height="300"></canvas>
+            </div>
           </div>
           <div>
             <h3 style="font-size: 16px; margin-bottom: 12px;">库存预警列表</h3>
@@ -212,7 +291,7 @@
           <h2>销售管理</h2>
           <table>
             <thead>
-              <tr><th>商品名称</th><th>分类</th><th>规格</th><th>销量</th><th>单价</th><th>销售额</th></tr>
+              <tr><th>商品名称</th><th>分类</th><th>规格</th><th>销量(吨)</th><th>单价</th><th>销售额</th></tr>
             </thead>
             <tbody>
               ${store.sales.map(item => `
@@ -220,7 +299,7 @@
                   <td>${item.productName}</td>
                   <td>${item.category}</td>
                   <td>${item.spec}</td>
-                  <td>${item.quantity}</td>
+                  <td>${formatNumber(item.quantity)}</td>
                   <td>${formatCurrency(item.unitPrice)}</td>
                   <td>${formatCurrency(item.revenue)}</td>
                 </tr>
@@ -245,7 +324,7 @@
                   <td>${item.productName}</td>
                   <td>${item.category}</td>
                   <td>${item.spec}</td>
-                  <td>${item.quantity}</td>
+                  <td>${formatNumber(item.quantity)}</td>
                   <td>${formatCurrency(item.amount)}</td>
                   <td>${item.supplier}</td>
                 </tr>
@@ -271,8 +350,8 @@
                   <td>${item.materialName}</td>
                   <td>${item.spec}</td>
                   <td>${item.warehouse}</td>
-                  <td>${item.quantity} ${item.unit}</td>
-                  <td>${item.warningLevel ? `<span class="warning-${item.warningLevel}">${item.warningLevel === 'high' ? '高' : item.warningLevel === 'medium' ? '中' : '低'}</span>` : '<span style="color: #16a34a;">正常</span>'}</td>
+                  <td>${formatNumber(item.quantity)} ${item.unit}</td>
+                  <td>${item.warningLevel ? '<span class="warning-' + item.warningLevel + '">' + (item.warningLevel === 'high' ? '高' : item.warningLevel === 'medium' ? '中' : '低') + '</span>' : '<span style="color: #16a34a;">正常</span>'}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -288,11 +367,11 @@
       const c = canvas.getContext('2d');
       const width = canvas.width;
       const height = canvas.height;
-      const padding = { top: 30, right: 30, bottom: 40, left: 50 };
+      const padding = { top: 30, right: 30, bottom: 40, left: 60 };
       const chartWidth = width - padding.left - padding.right;
       const chartHeight = height - padding.top - padding.bottom;
       const data = store.monthlyStats;
-      const maxValue = Math.max(...data.map(d => Math.max(d.sales, d.purchase, d.inventory))) * 1.1;
+      const maxValue = Math.max(...data.map(d => Math.max(d.sales, d.purchase))) * 1.1;
 
       c.clearRect(0, 0, width, height);
       c.strokeStyle = '#e5e7eb';
@@ -305,13 +384,12 @@
         c.fillStyle = '#6b7280';
         c.font = '12px sans-serif';
         c.textAlign = 'right';
-        c.fillText(Math.round(maxValue - (maxValue / 4) * i).toLocaleString(), padding.left - 5, y + 4);
+        c.fillText((Math.round(maxValue - (maxValue / 4) * i) / 10000).toFixed(0) + '万', padding.left - 5, y + 4);
       }
 
       const datasets = [
         { data: data.map(d => d.sales), color: '#3b82f6', label: '销售额' },
         { data: data.map(d => d.purchase), color: '#10b981', label: '购进额' },
-        { data: data.map(d => d.inventory), color: '#f59e0b', label: '库存量' },
       ];
 
       datasets.forEach(ds => {
@@ -336,11 +414,11 @@
       });
 
       c.fillStyle = '#6b7280';
-      c.font = '12px sans-serif';
+      c.font = '11px sans-serif';
       c.textAlign = 'center';
       data.forEach((d, i) => {
         const x = padding.left + (chartWidth / (data.length - 1)) * i;
-        c.fillText(d.month, x, height - 10);
+        c.fillText(d.month.substring(5), x, height - 10);
       });
 
       datasets.forEach((ds, i) => {
@@ -365,7 +443,7 @@
       const centerY = height / 2;
       const radius = Math.min(width, height) / 2 - 40;
       const data = store.categorySales;
-      const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+      const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16', '#f97316', '#6366f1', '#14b8a6', '#a855f7'];
       const total = data.reduce((sum, d) => sum + d.revenue, 0);
 
       c.clearRect(0, 0, width, height);
@@ -387,20 +465,70 @@
       c.arc(centerX, centerY, radius * 0.6, 0, Math.PI * 2);
       c.fill();
       c.fillStyle = '#1f2937';
-      c.font = 'bold 18px sans-serif';
+      c.font = 'bold 14px sans-serif';
       c.textAlign = 'center';
       c.fillText(formatCurrency(total), centerX, centerY);
 
-      let legendY = centerY + radius + 20;
+      let legendY = centerY + radius + 10;
       data.forEach((d, i) => {
-        const x = centerX - 80 + (i % 2) * 160;
-        const y = legendY + Math.floor(i / 2) * 20;
+        const x = centerX - 60 + (i % 2) * 120;
+        const y = legendY + Math.floor(i / 2) * 18;
         c.fillStyle = colors[i % colors.length];
-        c.fillRect(x, y - 5, 12, 12);
+        c.fillRect(x, y - 5, 10, 10);
         c.fillStyle = '#6b7280';
-        c.font = '12px sans-serif';
+        c.font = '11px sans-serif';
         c.textAlign = 'left';
-        c.fillText(d.category, x + 16, y + 4);
+        c.fillText(d.category, x + 14, y + 3);
+      });
+    }
+
+    function drawWarehouseChart() {
+      const ctx = document.getElementById('warehouseChart');
+      if (!ctx) return;
+      const canvas = ctx;
+      const c = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = Math.min(width, height) / 2 - 40;
+      const data = store.warehouseDistribution;
+      const colors = ['#3b82f6', '#10b981', '#f59e0b'];
+      const total = data.reduce((sum, d) => sum + d.quantity, 0);
+
+      c.clearRect(0, 0, width, height);
+      let startAngle = -Math.PI / 2;
+      data.forEach((d, i) => {
+        const sliceAngle = (d.quantity / total) * Math.PI * 2;
+        const endAngle = startAngle + sliceAngle;
+        c.beginPath();
+        c.moveTo(centerX, centerY);
+        c.arc(centerX, centerY, radius, startAngle, endAngle);
+        c.closePath();
+        c.fillStyle = colors[i % colors.length];
+        c.fill();
+        startAngle = endAngle;
+      });
+
+      c.fillStyle = '#ffffff';
+      c.beginPath();
+      c.arc(centerX, centerY, radius * 0.6, 0, Math.PI * 2);
+      c.fill();
+      c.fillStyle = '#1f2937';
+      c.font = 'bold 14px sans-serif';
+      c.textAlign = 'center';
+      c.fillText(total.toFixed(2) + ' 吨', centerX, centerY);
+
+      let legendY = centerY + radius + 10;
+      data.forEach((d, i) => {
+        const x = centerX - 70;
+        const y = legendY + i * 18;
+        c.fillStyle = colors[i % colors.length];
+        c.fillRect(x, y - 5, 10, 10);
+        c.fillStyle = '#6b7280';
+        c.font = '11px sans-serif';
+        c.textAlign = 'left';
+        c.fillText(d.warehouse + ' (' + d.percentage + '%)', x + 14, y + 3);
       });
     }
 
@@ -418,6 +546,7 @@
         setTimeout(() => {
           drawLineChart();
           drawPieChart();
+          drawWarehouseChart();
         }, 100);
       }
     }
