@@ -828,7 +828,7 @@
                 h('p', { className: 'text-gray-600 mb-2' }, '拖拽CSV文件到此处，或点击选择文件'),
                 h('p', { className: 'text-sm text-gray-400' }, '支持 .csv 格式文件'),
                 h('input', { type: 'file', accept: '.csv', onChange: e => this.handleFileUpload(e), className: 'mt-4 w-full h-10 opacity-0 absolute' }),
-                h('button', { onClick: () => document.querySelector('input[type="file"]').click() }, { className: 'mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' }, '选择文件')
+                h('button', { onClick: () => document.querySelector('input[type="file"]').click(), className: 'mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' }, '选择文件')
               )
             )
           )
